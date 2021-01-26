@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/layout.css">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <title>trading!</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        ul .floating  {
+            position: absolute;
+            right:18px;
+        }
+        ul .floating li a {
+            color: #226bac;
+            text-decoration: none;
+            font-size: 10px;
+        }
+        ul .floating li {
+            display: block;
+            background-color: #fbfbfb;
+            width: 58px;
+            height: 28px;
+            text-align: center;
+            opacity:0.8;
+            color: #226bac;
+            line-height: 28px;
+        }
+        ul .floating li:hover {
+            border-bottom: 1px solid #226bac;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" style="margin-bottom: 1px">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">Booth Today!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">P-Center<span class="caret"></span></a>
+              <ul class="floating">
+                  <li><a href="{% url 'account:center' %}">个人中心</a></li>
+                  <li><a href="{% url 'account:pwdoperate' %}">修改密码</a></li>
+                  <li><a href="{% url 'account:logout' %}">注销</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="side-nav">
+        <ul>
+            <li><a href="{% url 'booth_view:BoothRenting' %}">Booth Detail</a></li>
+            <li><a href="#">Hot Booth</a></li>
+            <li><a href="{% url 'booth_view:retrival' %}">retrival</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        {% block tabel %}
+        {% endblock %}
+    </div>
+    <div id="content" class="container">
+        <hr>
+        <footer style="margin-left: 8px;">
+            <p>&copy; trading_booth_system 2020</p>
+        </footer>
+    </div>
+</body>
+</html>

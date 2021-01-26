@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.side-nav {
+    position: absolute;
+    top: 52px;
+    bottom: 0px;
+    left: 0;
+    width: 88px;
+    height: 100%;
+    background-color: #203147;
+    list-style: none;
+    text-align: center;
+    font-size: 15px;
+}
+.side-nav ul li:hover {
+    text-color: #fff;: #fcf8e3;
+    border-bottom: 1px solid white;
+    box-shadow:2px 0px 5px #000;
+}
+.side-nav ul li a {
+    display: inline-block;
+    color: white;
+    margin-top: 18px;
+    text-decoration: none;
+}
+.main{
+    float:right;
+    background-color: #e2e2e2;
+    width: 1190px;
+    height: 100%;
+}

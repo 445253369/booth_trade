@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'account:renewal' booth_id %}">
+        {% csrf_token %}
+{#        <div style="margin-bottom: 20px;">#}
+{#        <div style="display:inline-block;width: 108px;text-align: center;">#}
+{#            start time:#}
+{#        </div>#}
+{#            <input type="datetime-local" id="date_info" name="start-time">#}
+{#            {{ msg }}#}
+{#        </div>#}
+        <div>
+            <div style="display:inline-block;width: 208px;text-align: center;margin-top: 28px;">
+                choose end time:
+            </div>
+            <input type="datetime-local" id="date_info" name="end-time">
+            <input type="submit" text="提交">
+        </div>
+    </form>
+{#<script>#}
+{#    $(document).ready(function () {#}
+{#        var time = new Date();#}
+{#        var day = ("0" + time.getDate()).slice(-2);#}
+{#        var month = ("0" + (time.getMonth() + 1)).slice(-2);#}
+{#        var today = time.getFullYear() + "-" + (month) + "-" + (day);#}
+{#        $('#date_info').val(today);#}
+{#    })#}
+{#</script>#}
+</body>
+</html>

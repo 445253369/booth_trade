@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{#{% block center %}#}
+{#    <li><a href="{% url 'account:center' %}">个人中心</a></li>#}
+{#    <li><a href="{% url 'account:pwdoperate' %}">修改密码</a></li>#}
+{#    <li><a href="#">注销</a></li>#}
+{#{% endblock %}#}
+{% block tabel %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align: center">id</th>
+                <th style="text-align: center">name</th>
+                <th style="text-align: center">price</th>
+                <th style="text-align: center">status</th>
+                <th style="text-align: center">deadline</th>
+                <th style="text-align: center">rest time</th>
+                <th style="text-align: center">oprate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>{{ row.3 }}</td>
+                    <td>{{ row.4 }}</td>
+                    <td>{{ row.5 }}</td>
+                        <td>
+                            <span>
+                                {% if row.3 == 'pass' %}
+                                    <a href="{% url 'account:renewal' row.0 %}">For renewal</a>
+                                {% else %}
+                                    For renewal
+                                {% endif %}
+                                |
+                            </span>
+                            <span>
+                                {% if row.3 == 'pass' and row.6 == 'uncheck' %}
+                                    <a href="{% url 'account:unsubscribe' row.0 %}">unsubscribe</a>
+                                {% else %}
+                                    unsubscribe
+                                {% endif %}
+                            </span>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

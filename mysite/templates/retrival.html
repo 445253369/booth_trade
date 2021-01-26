@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block table %}
+    <form method="POST" action="{% url 'booth_view:retrival' %}">{% csrf_token %}
+        <input type="text" value="name">
+    </form>
+{% endblock %}

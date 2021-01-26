@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% block tabel %}
+        <table class="table table-bordered table-hover table-condensed" style="text-align: center;margin-bottom: 0px;">
+            <thead>
+                <tr>
+                    <th style="text-align: center">id</th>
+                    <th style="text-align: center">name</th>
+                    <th style="text-align: center">pictrue</th>
+                    <th style="text-align: center">description</th>
+                    <th style="text-align: center">area</th>
+                    <th style="text-align: center">price</th>
+                    <th style="text-align: center">position</th>
+                    <th style="text-align: center">type</th>
+                    <th style="text-align: center">oprate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        <td>{{ row.0 }}</td>
+                        <td>{{ row.1 }}</td>
+                        <td>{{ row.2 | truncatechars:9 }}</td>
+                        <td>{{ row.3 | truncatechars:9 }}</td>
+                        <td>{{ row.4 }}</td>
+                        <td>{{ row.5 }}</td>
+                        <td>{{ row.6 }}</td>
+                        <td>{{ row.7 }}</td>
+                        <td><a href="{% url 'booth_view:RentingId' row.0 %}">rent now</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div style="text-align: center">
+            <ul class="pagination" style="margin-top: 0px;">
+                {{ pagination.page_html|safe }}
+            </ul>
+        </div>
+    {% endblock %}
+</body>
+</html>

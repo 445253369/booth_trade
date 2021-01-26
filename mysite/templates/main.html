@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <title>Document</title>
+    <style>
+        table tr th {
+            text-align: center;
+        }
+    </style>
+    <style>
+        .nav {
+            height: 48px;
+            background-color: #2aabd2;
+        }
+        .logo {
+            color: white;
+            font-size: 24px;
+            float: left;
+            line-height: 48px;
+            margin-left: 24px;
+        }
+        .login {
+            float: right;
+            line-height: 48px;
+            font-size: 16px;
+            color: white;
+            margin-right: 16px;
+        }
+        .login span a{
+            margin-left: 16px;
+            color: white;
+            text-decoration: none;
+        }
+        .login span a:hover {
+            color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <div class="logo">摊位交易系统</div>
+    <div class="login">
+        <span><a href="/account/register/">注册</a></span>
+        <span><a href="/account/login/">登录</a></span>
+    </div>
+</div>
+<table class="table table-bordered table-hover table-condensed" style="text-align: center;">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>pictrue</th>
+            <th>description</th>
+            <th>area</th>
+            <th>price</th>
+            <th>position</th>
+            <th>create_at</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.pictrue | truncatechars:9 }}</td>
+                <td>{{ row.description | truncatechars:9 }}</td>
+                <td>{{ row.area }}</td>
+                <td>{{ row.price }}</td>
+                <td>{{ row.position }}</td>
+                <td>{{ row.create_at }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
