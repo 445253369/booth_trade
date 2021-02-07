@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <form method="get" class="form form-horizontal">
+        {% for exp in filter.form %}
+            <div class="form-group">
+                <label class="col-md-2" class="sr-only">{{ exp.label }}</label>
+                <div class="col-md-10">
+                    {{ exp }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class=" text-center">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    <hr>
+    <div class="result-area">
+        {% if filter.qs.count > 0 %}
+            <table class="table table-bordered table-striped text-center">
+                <tr>
+                    <td>name</td>
+                    <td>picture</td>
+                    <td>price</td>
+                    <td>area</td>
+                    <td>position</td>
+                    <td>publish at</td>
+                    <td>action</td>
+                </tr>
+                {% for obj in filter.qs %}
+                    <tr>
+                        <td>{{ obj.name }}</td>
+                        <td width="300"><img src="/media/{{ obj.picture }}" alt="" class="img-responsive img-thumbnail center-block"></td>
+                        <td>{{ obj.price }}</td>
+                        <td>{{ obj.area }}</td>
+                        <td>{{ obj.position }}</td>
+                        <td>{{ obj.create_at }}</td>
+                        <td><a href="{% url 'detail' obj.id %}">Detail</a></td>
+                    </tr>
+                    <!-- TODO PAGE -->
+                {% endfor %}
+            </table>
+
+        {% endif %}
+    </div>
+    <script>
+        $('input').addClass('form-control')
+    </script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <form class="form-horizontal" method="post" action="{% url 'account:login' %}">
+        {% csrf_token %}
+        <h2 class="form-signin-heading text-center">Login</h2>
+        <div class="form-group">
+            <label class="col-md-1" for="inputEmail" class="sr-only">Usernmae</label>
+            <div class="col-md-10">
+                <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required >
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-1" for="password" class="sr-only">Password</label>
+            <div class="col-md-10">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+            </div>
+
+        </div>
+        <div class=" text-center">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a class="btn btn-primary" href="{% url 'account:register' %}">Register</a>
+        </div>
+
+      </form>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booth Booking System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static '/js/jquery.js' %}"></script>
+    <script src="{% static '/js/bootstrap.js' %}"></script>
+    <link href="{% static '/layer/layer/theme/default/layer.css' %}" rel="stylesheet">
+    <script src="{% static '/layer/layer/layer.js' %}"></script>
+                <!--
+                <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+        <script src="https://www.layuicdn.com/layui/layui.js"></script>
+            -->
+        <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .page_a {
+          color:#444;text-decoration:none;
+      }
+      {#a:link,a:visited{color:#444;text-decoration:none;}#}
+      {#a:hover{color:#ff0000;}#}
+
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+          Farm Booking System
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'search' %}">Search</a></li>
+
+
+      </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'account:center' %}">Hello, {{ request.user.username }}</a></li>
+                <li><a href="{% url 'account:change_profile' %}">Change Profile</a></li>
+                <li><a href="{% url 'account:logout' %}">Logout</a></li>
+
+            {% else %}
+                <li><a href="{% url 'account:login' %}">Login</a></li>
+                <li><a href="{% url 'account:register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div id="content" class="container">
+    <div class="message-area">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+  {% block content %}
+  {% endblock %}
+  <hr>
+  <footer>
+<p>&copy; Booth Booking System 2021</p>
+</footer>
+</div>
+
+</body>
+</html>

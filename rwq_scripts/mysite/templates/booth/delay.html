@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+{% block content %}
+    <h1>Delay</h1>
+    <div class="row">
+        <div class="col-md-5">
+            <img  src="/media/{{ booth.picture }}" alt="" class="img-responsive img-thumbnail center-block">
+        </div>
+        <div class="col-md-7">
+            <ul class="list-group">
+                <li class="list-group-item">Name: {{ booth.name }}</li>
+                <li class="list-group-item">Price: <span class="h4">{{ booth.price }}</span></li>
+                <li class="list-group-item">Position: {{ booth.position }}</li>
+                <li class="list-group-item">Area: {{ booth.area }}</li>
+                <li class="list-group-item">Publish at: {{ booth.create_at }}</li>
+                <li class="list-group-item text-center">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Delay</button>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h3>Detail</h3>
+    <div>
+        {{ booth.description }}
+    </div>
+
+    <!--  合同条款 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Contract</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- TODO 合同条款1 -->
+                    <p>1. One fine body&hellip;</p>
+                    <p>2. to </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="showQrCode()">I agree</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--  /合同条款 -->
+    <!-- 支付二维码 -->
+        <div class="modal" tabindex="-1" role="dialog" id="payModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Qr Code</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <img src="/static/pay_qrcode.png" class="img-responsive center-block" alt="">
+                        </div>
+                        <div>
+                            <form class="form" id="pay-form" method="post" action="{% url 'delay' rent.id %}">
+                                <div class="form-group">
+                                    <label for="">DeadLine</label>
+                                    {% csrf_token %}
+                                    <input type="date" name="deadline" class="form-control"/>
+                                    <input type="hidden" name="bid" value="{{ booth.id }}">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" onclick="pay()">Pay</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    <!-- /支付二维码 -->
+    <script>
+        function showQrCode() {
+            $('#myModal').modal('hide');
+            // 弹出二维码
+            $('#payModal').modal('show');
+        }
+        function pay() {
+            /**
+             * 支付
+             */
+            $('#pay-form').submit();
+        }
+    </script>
+{% endblock %}

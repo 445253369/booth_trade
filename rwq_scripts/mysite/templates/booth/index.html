@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Farm Booth System</h1>
+        <p>The system uses Python Django web framework for development, using MySQL database, to achieve effective management of boothes!</p>
+        <p>
+            <img src="/static/LogoTitle.jpg" alt="" class="img img-responsive">
+        </p>
+        <p><a href="#" class="btn btn-primary btn-large">Get Start &raquo;</a></p>
+      </div>
+
+        <div class="row">
+            <h3>Latest Boothes</h3>
+            <hr>
+
+            {% for latest_guitar in latest %}
+
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img  src="/media/{{ latest_guitar.picture }}" alt="" class="img-responsive img-thumbnail center-block">
+                    <div class="caption">
+                        <h4 class="text-center">{{ latest_guitar.name }}</h4>
+                        <p class="text-center">{{ latest_guitar.price }}$</p>
+                        <p class="text-center"><a class="btn" href="{% url 'detail' latest_guitar.id %}">Detail &raquo;</a></p>
+                    </div>
+                </div>
+             </div>
+            {% endfor %}
+
+        </div>
+{% endblock %}
